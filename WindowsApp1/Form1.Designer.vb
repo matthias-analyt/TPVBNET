@@ -24,6 +24,9 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.PageSetupDialog1 = New System.Windows.Forms.PageSetupDialog()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.curveLengh_ = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -45,9 +48,13 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.nbSeg_ = New System.Windows.Forms.NumericUpDown()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.BdX_, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BX_, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +76,7 @@ Partial Class Form1
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.ToolStrip1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.curveLengh_)
         Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox2)
         Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox1)
@@ -81,6 +89,33 @@ Partial Class Form1
         Me.SplitContainer1.Size = New System.Drawing.Size(577, 346)
         Me.SplitContainer1.SplitterDistance = 225
         Me.SplitContainer1.TabIndex = 0
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(225, 25)
+        Me.ToolStrip1.TabIndex = 12
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = Global.WindowsApp1.My.Resources.Resources.disquette
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "ToolStripButton1"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = Global.WindowsApp1.My.Resources.Resources.couleur
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "ToolStripButton2"
         '
         'curveLengh_
         '
@@ -303,6 +338,10 @@ Partial Class Form1
         Me.nbSeg_.TabIndex = 0
         Me.nbSeg_.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -315,6 +354,8 @@ Partial Class Form1
         Me.SplitContainer1.Panel1.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.BdX_, System.ComponentModel.ISupportInitialize).EndInit()
@@ -355,4 +396,10 @@ Partial Class Form1
     Friend WithEvents BY_ As NumericUpDown
     Friend WithEvents Label9 As Label
     Friend WithEvents curveLengh_ As Label
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

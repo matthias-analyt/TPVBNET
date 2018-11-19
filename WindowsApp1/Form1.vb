@@ -1,6 +1,10 @@
-﻿Public Class Form1
+﻿Imports System.IO
+
+Public Class Form1
 
     Dim A_, B_, Ad_, Bd_ As New PointF
+    Dim comptSaveEvent As Integer
+    Dim myPen As New Pen(Color.Black)
 
     Sub New()
 
@@ -83,7 +87,6 @@
         axisYb.Y = translateCoords(1, SplitContainer1.Panel2.Height)
 
 
-        Dim pen As New Pen(Color.FromArgb(255, 0, 0, 0))
         Dim penDash As New Pen(Color.FromArgb(255, 0, 0, 0))
         penDash.DashPattern = {5, 5, 5, 5}
         Dim brush As New SolidBrush(Color.FromArgb(255, 255, 0, 0))
@@ -101,7 +104,7 @@
 
 
 
-        e.Graphics.DrawLines(pen, generatePoints(Int(nbSeg_.Value), A_, Ad_, B_, Bd_))
+        e.Graphics.DrawLines(myPen, generatePoints(Int(nbSeg_.Value), A_, Ad_, B_, Bd_))
         rect.Location = upperleftRect(rect, A_)
         e.Graphics.FillEllipse(brush, rect)
         rect.Location = upperleftRect(rect, B_)
@@ -115,11 +118,19 @@
 
         e.Graphics.DrawLine(penDash, Ad_, A_)
         e.Graphics.DrawLine(penDash, Bd_, B_)
-        pen.Color = Color.FromArgb(255, 0, 0, 0)
+        myPen.Color = Color.FromArgb(255, 0, 0, 0)
         penDash.Color = Color.FromArgb(255, 0, 0, 0)
-        e.Graphics.DrawRectangle(pen, frame)
+        e.Graphics.DrawRectangle(myPen, frame)
         e.Graphics.DrawLine(penDash, axisXa, axisXb)
         e.Graphics.DrawLine(penDash, axisYa, axisYb)
+
+    End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+
+        ColorDialog1.ShowDialog()
+        myPen.Color = ColorDialog1.Color
+        reDraw()
 
     End Sub
 
@@ -177,4 +188,47 @@
         SplitContainer1.Panel2.Refresh()
     End Sub
 
+
+
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+
+        Dim myPath As String
+
+        If (FolderBrowserDialog1.ShowDialog() = DialogResult.OK) Then
+            myPath = FolderBrowserDialog1.SelectedPath
+        Else
+            myPath = ""
+        End If
+
+        myPath = createFolder(myPath)
+        comptSaveEvent = My.Computer.FileSystem.GetFiles(myPath, FileIO.SearchOption.SearchTopLevelOnly, "screenshot*").Count
+        TakeScreenShot(SplitContainer1.Panel2).Save(myPath + "\screenshot_" + comptSaveEvent.ToString + ".jpeg", System.Drawing.Imaging.ImageFormat.Jpeg)
+
+        MsgBox("courbe sauvegardée dans le répertoire : " + myPath)
+    End Sub
+
+    Private Function TakeScreenShot(ByVal Control As Control) As Bitmap
+        Dim tmpImg As New Bitmap(Control.Width, Control.Height)
+        Using g As Graphics = Graphics.FromImage(tmpImg)
+            g.CopyFromScreen(SplitContainer1.Panel2.PointToScreen(New Point(0, 0)), New Point(0, 0), New Size(SplitContainer1.Panel2.Width, SplitContainer1.Panel2.Height))
+        End Using
+        Return tmpImg
+    End Function
+
+    Private Function createFolder(mypath As String) As String
+
+
+        Dim todaysdate As String = DateTime.Today.ToString("yyyy-MM-dd")
+        mypath = mypath + "\" + todaysdate
+
+
+        'Création du répertoire de sauvegarde
+        If (Not System.IO.Directory.Exists(mypath)) Then
+            System.IO.Directory.CreateDirectory(mypath)
+        End If
+
+        Return mypath
+
+    End Function
 End Class
