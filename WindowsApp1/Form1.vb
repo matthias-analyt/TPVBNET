@@ -3,6 +3,7 @@
 Public Class Form1
 
     Dim A_, B_, Ad_, Bd_ As New PointF
+    Dim selectedPoint As String = ""
     Dim comptSaveEvent As Integer
     Dim myPen As New Pen(Color.Black)
 
@@ -62,7 +63,9 @@ Public Class Form1
 
         Return point
     End Function
-
+    Private Function distance(ByVal X As PointF, ByVal Y As PointF) As Single
+        Return System.Math.Sqrt((X.X - Y.X) ^ 2 + (X.Y - Y.Y) ^ 2)
+    End Function
     Private Function upperleftRect(ByVal rect As RectangleF, ByVal point As PointF) As PointF
 
         Dim result As PointF
@@ -124,6 +127,54 @@ Public Class Form1
         e.Graphics.DrawLine(penDash, axisXa, axisXb)
         e.Graphics.DrawLine(penDash, axisYa, axisYb)
 
+    End Sub
+
+    Private Sub SplitContainer1_Pannel2_Press(sender As Object, e As MouseEventArgs) Handles SplitContainer1.Panel2.MouseDown
+        Dim selectDistance As Single = 25
+        If (e.Button = MouseButtons.Left) Then
+            Dim point As PointF = e.Location
+            Dim distanceFromA_ As Single = distance(point, A_)
+            Dim distanceFromB_ As Single = distance(point, B_)
+            Dim distanceFromAd_ As Single = distance(point, Ad_)
+            Dim distanceFromBd_ As Single = distance(point, Bd_)
+
+            If (distanceFromA_ < selectDistance) Then
+                selectedPoint = "A"
+            ElseIf (distanceFromB_ < selectDistance) Then
+                selectedPoint = "B"
+            ElseIf (distanceFromAd_ < selectDistance) Then
+                selectedPoint = "Ad"
+            ElseIf (distanceFromBd_ < selectDistance) Then
+                selectedPoint = "Bd"
+            Else
+                selectedPoint = ""
+            End If
+        End If
+    End Sub
+
+    Private Sub SplitContainer1_Pannel2_Released(sender As Object, e As MouseEventArgs) Handles SplitContainer1.Panel2.MouseUp
+        If (e.Button = MouseButtons.Left And selectedPoint <> "") Then
+            Dim point As PointF = e.Location
+            Dim distanceFromA_ As Single = distance(point, A_)
+            Dim distanceFromB_ As Single = distance(point, B_)
+            Dim distanceFromAd_ As Single = distance(point, Ad_)
+            Dim distanceFromBd_ As Single = distance(point, Bd_)
+
+
+            If (selectedPoint = "A") Then
+                AX_.Value = translateInverseCoords(e.Location.X, SplitContainer1.Panel2.Width)
+                AY_.Value = -translateInverseCoords(e.Location.Y, SplitContainer1.Panel2.Height)
+            ElseIf (selectedPoint = "Ad") Then
+                AdX_.Value = translateInverseCoords(e.Location.X, SplitContainer1.Panel2.Width)
+                AdY_.Value = -translateInverseCoords(e.Location.Y, SplitContainer1.Panel2.Height)
+            ElseIf (selectedPoint = "B") Then
+                BX_.Value = translateInverseCoords(e.Location.X, SplitContainer1.Panel2.Width)
+                BY_.Value = -translateInverseCoords(e.Location.Y, SplitContainer1.Panel2.Height)
+            ElseIf (selectedPoint = "Bd") Then
+                BdX_.Value = translateInverseCoords(e.Location.X, SplitContainer1.Panel2.Width)
+                BdY_.Value = -translateInverseCoords(e.Location.Y, SplitContainer1.Panel2.Height)
+            End If
+        End If
     End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click

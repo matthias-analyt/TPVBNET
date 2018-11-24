@@ -336,7 +336,7 @@ Partial Class Form1
         Me.nbSeg_.Name = "nbSeg_"
         Me.nbSeg_.Size = New System.Drawing.Size(77, 20)
         Me.nbSeg_.TabIndex = 0
-        Me.nbSeg_.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nbSeg_.Value = New Decimal(New Integer() {10, 0, 0, 0})
         '
         'OpenFileDialog1
         '
