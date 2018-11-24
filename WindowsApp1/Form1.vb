@@ -152,8 +152,8 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub SplitContainer1_Pannel2_Released(sender As Object, e As MouseEventArgs) Handles SplitContainer1.Panel2.MouseUp
-        If (e.Button = MouseButtons.Left And selectedPoint <> "") Then
+    Private Sub SplitContainer1_Pannel2_Released(sender As Object, e As MouseEventArgs) Handles SplitContainer1.Panel2.MouseMove
+        If (e.Button = MouseButtons.Left And selectedPoint <> "" And SplitContainer1.Panel2.DisplayRectangle.Contains(e.Location)) Then
             Dim point As PointF = e.Location
             Dim distanceFromA_ As Single = distance(point, A_)
             Dim distanceFromB_ As Single = distance(point, B_)
@@ -176,6 +176,7 @@ Public Class Form1
             End If
         End If
     End Sub
+
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
 
