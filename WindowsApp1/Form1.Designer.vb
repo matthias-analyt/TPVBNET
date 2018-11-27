@@ -27,6 +27,8 @@ Partial Class Form1
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.curveLengh_ = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -51,6 +53,8 @@ Partial Class Form1
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -71,11 +75,13 @@ Partial Class Form1
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.ListBox1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.ToolStrip1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.curveLengh_)
         Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox2)
@@ -86,13 +92,13 @@ Partial Class Form1
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.SplitContainer1.Size = New System.Drawing.Size(577, 346)
+        Me.SplitContainer1.Size = New System.Drawing.Size(743, 512)
         Me.SplitContainer1.SplitterDistance = 225
         Me.SplitContainer1.TabIndex = 0
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(225, 25)
@@ -117,10 +123,28 @@ Partial Class Form1
         Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
         Me.ToolStripButton2.Text = "ToolStripButton2"
         '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton3.Image = Global.WindowsApp1.My.Resources.Resources.csv
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton3.Text = "ToolStripButton3"
+        '
+        'ToolStripButton4
+        '
+        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton4.Image = Global.WindowsApp1.My.Resources.Resources.csv
+        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton4.Name = "ToolStripButton4"
+        Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton4.Text = "ToolStripButton4"
+        '
         'curveLengh_
         '
         Me.curveLengh_.AutoSize = True
-        Me.curveLengh_.Location = New System.Drawing.Point(17, 317)
+        Me.curveLengh_.Location = New System.Drawing.Point(15, 483)
         Me.curveLengh_.Name = "curveLengh_"
         Me.curveLengh_.Size = New System.Drawing.Size(60, 13)
         Me.curveLengh_.TabIndex = 11
@@ -136,7 +160,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.BY_)
         Me.GroupBox2.Controls.Add(Me.Label9)
-        Me.GroupBox2.Location = New System.Drawing.Point(17, 204)
+        Me.GroupBox2.Location = New System.Drawing.Point(15, 370)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(185, 106)
         Me.GroupBox2.TabIndex = 10
@@ -233,7 +257,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.AY_)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Location = New System.Drawing.Point(17, 92)
+        Me.GroupBox1.Location = New System.Drawing.Point(15, 258)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(185, 106)
         Me.GroupBox1.TabIndex = 8
@@ -323,7 +347,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 68)
+        Me.Label1.Location = New System.Drawing.Point(12, 234)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(105, 13)
         Me.Label1.TabIndex = 1
@@ -331,7 +355,7 @@ Partial Class Form1
         '
         'nbSeg_
         '
-        Me.nbSeg_.Location = New System.Drawing.Point(125, 66)
+        Me.nbSeg_.Location = New System.Drawing.Point(123, 232)
         Me.nbSeg_.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.nbSeg_.Name = "nbSeg_"
         Me.nbSeg_.Size = New System.Drawing.Size(77, 20)
@@ -342,14 +366,23 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(15, 47)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(185, 173)
+        Me.ListBox1.TabIndex = 13
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(577, 346)
+        Me.ClientSize = New System.Drawing.Size(743, 512)
         Me.Controls.Add(Me.SplitContainer1)
+        Me.DoubleBuffered = True
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Generation Courbes de Bezier"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -402,4 +435,8 @@ Partial Class Form1
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents ToolStripButton3 As ToolStripButton
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents ToolStripButton4 As ToolStripButton
+    Friend WithEvents ListBox1 As ListBox
 End Class
