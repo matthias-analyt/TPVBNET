@@ -15,7 +15,8 @@ Public Class Form1
         Dim A, B, Ad, Bd As New PointF(SplitContainer1.Panel2.Width / 2, SplitContainer1.Panel2.Height / 2)
 
         ListBox1.Items.Add(New Bezier(A, B, Ad, Bd))
-        ListBox1.Items.Add(New Bezier(A, B, Ad, Bd))
+        ListBox1.SelectedIndex = 0
+
 
 
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
@@ -352,13 +353,16 @@ Public Class Form1
     End Sub
 
     Private Sub reDraw()
+
         SplitContainer1.Panel2.Refresh()
+
+
     End Sub
 
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
 
         Dim myPath As String
-        SaveFileDialog1.FileName = "myText"
+        SaveFileDialog1.FileName = "myCourbe"
 
         SaveFileDialog1.DefaultExt = "csv"
         SaveFileDialog1.Filter = "Csv files (*.csv)|*.csv|All files (*.*)|*.*"
@@ -397,7 +401,7 @@ Public Class Form1
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
 
         Dim myPath As String
-        OpenFileDialog1.FileName = "myText"
+        OpenFileDialog1.FileName = "myBezier"
 
         OpenFileDialog1.DefaultExt = "csv"
         OpenFileDialog1.Filter = "Csv files (*.csv)|*.csv|All files (*.*)|*.*"
@@ -405,6 +409,10 @@ Public Class Form1
 
             myPath = OpenFileDialog1.FileName
             Try
+
+                Dim A, B, Ad, Bd As New PointF(SplitContainer1.Panel2.Width / 2, SplitContainer1.Panel2.Height / 2)
+                ListBox1.Items.Add(New Bezier(A, B, Ad, Bd))
+                ListBox1.SelectedIndex() = ListBox1.Items.Count - 1
 
                 Dim fileReader As String
                 fileReader = My.Computer.FileSystem.ReadAllText(myPath)
@@ -491,4 +499,28 @@ Public Class Form1
 
         End If
     End Sub
+
+    Private Sub ajout_courbe__Click(sender As Object, e As EventArgs) Handles ajout_courbe_.Click
+        Dim A, B, Ad, Bd As New PointF(SplitContainer1.Panel2.Width / 2, SplitContainer1.Panel2.Height / 2)
+        ListBox1.Items.Add(New Bezier(A, B, Ad, Bd))
+        ListBox1.SelectedIndex() = ListBox1.Items.Count - 1
+        Name = InputBox("quelle est le nom de la nouvelle courbe?")
+        ListBox1.SelectedItem.text = Name
+    End Sub
+
+    Private Sub supprimer_courbe__Click(sender As Object, e As EventArgs) Handles supprimer_courbe_.Click
+        If getCurrentCurve() IsNot Nothing Then
+
+            ListBox1.Items.Remove(ListBox1.SelectedItem)
+
+        End If
+
+        If ListBox1.Items.Count() > 0 Then
+            ListBox1.SelectedIndex() = ListBox1.Items.Count - 1
+            reDraw()
+        End If
+
+
+    End Sub
+
 End Class

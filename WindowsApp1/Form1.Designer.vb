@@ -24,6 +24,7 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.PageSetupDialog1 = New System.Windows.Forms.PageSetupDialog()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
@@ -54,7 +55,8 @@ Partial Class Form1
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.ajout_courbe_ = New System.Windows.Forms.Button()
+        Me.supprimer_courbe_ = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -81,6 +83,8 @@ Partial Class Form1
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.supprimer_courbe_)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.ajout_courbe_)
         Me.SplitContainer1.Panel1.Controls.Add(Me.ListBox1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.ToolStrip1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.curveLengh_)
@@ -95,6 +99,14 @@ Partial Class Form1
         Me.SplitContainer1.Size = New System.Drawing.Size(743, 512)
         Me.SplitContainer1.SplitterDistance = 225
         Me.SplitContainer1.TabIndex = 0
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(15, 47)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(185, 134)
+        Me.ListBox1.TabIndex = 13
         '
         'ToolStrip1
         '
@@ -366,13 +378,23 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'ListBox1
+        'ajout_courbe_
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(15, 47)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(185, 173)
-        Me.ListBox1.TabIndex = 13
+        Me.ajout_courbe_.Location = New System.Drawing.Point(18, 188)
+        Me.ajout_courbe_.Name = "ajout_courbe_"
+        Me.ajout_courbe_.Size = New System.Drawing.Size(92, 23)
+        Me.ajout_courbe_.TabIndex = 14
+        Me.ajout_courbe_.Text = "Ajouter"
+        Me.ajout_courbe_.UseVisualStyleBackColor = True
+        '
+        'supprimer_courbe_
+        '
+        Me.supprimer_courbe_.Location = New System.Drawing.Point(116, 188)
+        Me.supprimer_courbe_.Name = "supprimer_courbe_"
+        Me.supprimer_courbe_.Size = New System.Drawing.Size(82, 23)
+        Me.supprimer_courbe_.TabIndex = 14
+        Me.supprimer_courbe_.Text = "Supprimer"
+        Me.supprimer_courbe_.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -439,4 +461,6 @@ Partial Class Form1
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents ToolStripButton4 As ToolStripButton
     Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents supprimer_courbe_ As Button
+    Friend WithEvents ajout_courbe_ As Button
 End Class
